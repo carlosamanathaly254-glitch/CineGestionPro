@@ -16,14 +16,24 @@ public class EjemplaresController : ControllerBase
     [HttpGet]
     public async Task<ActionResult<IEnumerable<Ejemplar>>> GetEjemplar()
     {
-        return await _context.Ejemplares.ToListAsync();
+        return await _context.Ejemplares
+        .Include(e => e.Contenido)
+            .ThenInclude(c => c.Categoria)
+        .Include(e => e.DetallesAlquiler)
+            .ThenInclude(d => d.Alquiler)
+        .ToListAsync();
     }
 
     // GET: api/Ejemplar/5
     [HttpGet("{id_ejemplar}")]
     public async Task<ActionResult<Ejemplar>> GetEjemplar(int id_ejemplar)
     {
-        var ejemplar = await _context.Ejemplares.FindAsync(id_ejemplar);
+        var ejemplar = await _context.Ejemplares
+            .Include(e => e.Contenido)
+                .ThenInclude(c => c.Categoria)
+            .Include(e => e.DetallesAlquiler)
+                .ThenInclude(d => d.Alquiler)
+            .FirstOrDefaultAsync(e => e.id_ejemplar == id_ejemplar);
 
         if (ejemplar == null)
         {

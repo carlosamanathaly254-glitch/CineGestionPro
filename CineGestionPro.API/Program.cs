@@ -11,6 +11,10 @@ namespace CineGestionPro.API
                 throw new InvalidOperationException("Connection string 'Postgres' not found.");
 
             builder.Services.AddDbContext<CineGestionProAPIContext>(options => options.UseNpgsql(connectionString));
+            builder.Services.AddControllers().AddNewtonsoftJson(options =>
+            {
+                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+            });
 
             // Add services to the container.
 

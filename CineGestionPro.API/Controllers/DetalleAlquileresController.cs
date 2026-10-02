@@ -16,14 +16,22 @@ public class DetalleAlquileresController : ControllerBase
     [HttpGet]
     public async Task<ActionResult<IEnumerable<DetalleAlquiler>>> GetDetalleAlquiler()
     {
-        return await _context.DetalleAlquileres.ToListAsync();
+        return await _context.DetalleAlquileres
+        .Include(d => d.Alquiler)
+        .Include(d => d.Ejemplar)
+            .ThenInclude(e => e.Contenido)
+        .ToListAsync();
     }
 
     // GET: api/DetalleAlquiler/5
     [HttpGet("{id_detalle}")]
     public async Task<ActionResult<DetalleAlquiler>> GetDetalleAlquiler(int id_detalle)
     {
-        var detallealquiler = await _context.DetalleAlquileres.FindAsync(id_detalle);
+        var detallealquiler = await _context.DetalleAlquileres
+            .Include(d => d.Alquiler)
+            .Include(d => d.Ejemplar)
+                .ThenInclude(e => e.Contenido)
+            .FirstOrDefaultAsync(d => d.id_detalle == id_detalle);
 
         if (detallealquiler == null)
         {

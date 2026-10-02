@@ -16,14 +16,18 @@ public class RolesController : ControllerBase
     [HttpGet]
     public async Task<ActionResult<IEnumerable<Rol>>> GetRol()
     {
-        return await _context.Roles.ToListAsync();
+        return await _context.Roles
+        .Include(r => r.Usuarios)
+        .ToListAsync();
     }
 
     // GET: api/Rol/5
     [HttpGet("{id_rol}")]
     public async Task<ActionResult<Rol>> GetRol(int id_rol)
     {
-        var rol = await _context.Roles.FindAsync(id_rol);
+        var rol = await _context.Roles
+            .Include(r => r.Usuarios)
+            .FirstOrDefaultAsync(r => r.id_rol == id_rol);
 
         if (rol == null)
         {

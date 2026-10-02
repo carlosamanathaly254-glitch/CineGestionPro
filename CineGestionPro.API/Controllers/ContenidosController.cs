@@ -16,14 +16,22 @@ public class ContenidosController : ControllerBase
     [HttpGet]
     public async Task<ActionResult<IEnumerable<Contenido>>> GetContenido()
     {
-        return await _context.Contenidos.ToListAsync();
+        return await _context.Contenidos
+        .Include(c => c.Categoria)
+        .Include(c => c.Ejemplares)
+            .ThenInclude(e => e.DetallesAlquiler)
+        .ToListAsync();
     }
 
     // GET: api/Contenido/5
     [HttpGet("{id_contenido}")]
     public async Task<ActionResult<Contenido>> GetContenido(int id_contenido)
     {
-        var contenido = await _context.Contenidos.FindAsync(id_contenido);
+        var contenido = await _context.Contenidos
+            .Include(c => c.Categoria)
+            .Include(c => c.Ejemplares)
+                .ThenInclude(e => e.DetallesAlquiler)
+            .FirstOrDefaultAsync(c => c.id_contenido == id_contenido);
 
         if (contenido == null)
         {
