@@ -1,4 +1,6 @@
 <Solution>
   <Project Path="CineGestionPro.API/CineGestionPro.API.csproj" Id="ae22a70c-d570-4749-8f51-afe2b6dcf371" />
+  <Project Path="CineGestionPro.Consumer/CineGestionPro.Consumer.csproj" Id="7d9d3bed-427b-491a-a844-90d3f7aae095" />
   <Project Path="CineGestionPro.Modelos/CineGestionPro.Modelos.csproj" />
+  <Project Path="CineGestionPro.MVC/CineGestionPro.MVC.csproj" Id="2ecbf6dd-e07f-467b-97a2-cc8fe305880a" />
 </Solution>
