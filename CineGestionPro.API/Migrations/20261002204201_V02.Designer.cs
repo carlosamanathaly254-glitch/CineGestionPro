@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -10,9 +11,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace CineGestionPro.API.Migrations
 {
     [DbContext(typeof(CineGestionProAPIContext))]
-    partial class CineGestionProAPIContextModelSnapshot : ModelSnapshot
+    [Migration("20261002204201_V02")]
+    partial class V02
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -42,7 +45,7 @@ namespace CineGestionPro.API.Migrations
                         .HasColumnType("timestamp without time zone")
                         .HasColumnName("fecha_devolucion");
 
-                    b.Property<int?>("id_usuario")
+                    b.Property<int>("id_usuario")
                         .HasColumnType("integer")
                         .HasColumnName("id_usuario");
 
@@ -269,7 +272,9 @@ namespace CineGestionPro.API.Migrations
                 {
                     b.HasOne("CineGestionPro.Modelos.Usuario", "Usuario")
                         .WithMany("Alquileres")
-                        .HasForeignKey("id_usuario");
+                        .HasForeignKey("id_usuario")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Usuario");
                 });

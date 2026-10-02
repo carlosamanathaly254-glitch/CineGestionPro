@@ -117,17 +117,11 @@ namespace CineGestionPro.API.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     fecha_alquiler = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     fecha_devolucion = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    costo_total = table.Column<decimal>(type: "numeric(10,2)", nullable: false),
-                    Usuarioid_usuario = table.Column<int>(type: "integer", nullable: true)
+                    costo_total = table.Column<decimal>(type: "numeric(10,2)", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Alquileres", x => x.id_alquiler);
-                    table.ForeignKey(
-                        name: "FK_Alquileres_Usuarios_Usuarioid_usuario",
-                        column: x => x.Usuarioid_usuario,
-                        principalTable: "Usuarios",
-                        principalColumn: "id_usuario");
                 });
 
             migrationBuilder.CreateTable(
@@ -157,11 +151,6 @@ namespace CineGestionPro.API.Migrations
                         principalColumn: "id_ejemplar",
                         onDelete: ReferentialAction.Cascade);
                 });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Alquileres_Usuarioid_usuario",
-                table: "Alquileres",
-                column: "Usuarioid_usuario");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Contenido_id_categoria",

@@ -1,6 +1,55 @@
 ﻿@{
-    ViewData["Title"] = "Privacy Policy";
+    ViewData["Title"] = "Política de Privacidad";
 }
-<h1>@ViewData["Title"]</h1>
 
-<p>Use this page to detail your site's privacy policy.</p>
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card-custom">
+                <div class="text-center mb-4">
+                    <span class="fs-1">🔒</span>
+                    <h1 class="fw-bold text-dark mt-2">@ViewData["Title"]</h1>
+                    <p class="text-muted">Última actualización: Octubre 2026</p>
+                </div>
+
+                <hr class="mb-4" />
+
+                <div class="content-body text-secondary">
+                    <h4 class="fw-bold text-dark mt-4">1. Información que recopilamos</h4>
+                    <p>
+                        En <strong>CineGestión Pro</strong>, recopilamos información personal básica necesaria para el funcionamiento del sistema de alquileres, tales como nombres, apellidos, correo electrónico, número de teléfono y registros de actividad de alquiler de películas y series.
+                    </p>
+
+                    <h4 class="fw-bold text-dark mt-4">2. Uso de la información</h4>
+                    <p>
+                        Los datos proporcionados son utilizados exclusivamente para:
+                    </p>
+                    <ul class="mb-3">
+                        <li>Gestionar el registro y control de usuarios y roles dentro de la plataforma.</li>
+                        <li>Administrar el catálogo de contenidos, ejemplares y transacciones de alquiler.</li>
+                        <li>Garantizar la seguridad y soporte técnico del sistema.</li>
+                    </ul>
+
+                    <h4 class="fw-bold text-dark mt-4">3. Protección de los datos</h4>
+                    <p>
+                        Implementamos medidas de seguridad técnicas y administrativas estándar de la industria para proteger su información personal contra accesos no autorizados, pérdida o alteración.
+                    </p>
+
+                    <h4 class="fw-bold text-dark mt-4">4. Derechos de los usuarios</h4>
+                    <p>
+                        Los usuarios tienen el derecho de solicitar la visualización, actualización o eliminación de sus datos personales registrados en nuestra base de datos en cualquier momento a través del panel de administración.
+                    </p>
+
+                    <h4 class="fw-bold text-dark mt-4">5. Contacto</h4>
+                    <p>
+                        Si tienes alguna duda o pregunta sobre esta política de privacidad, puedes ponerte en contacto con el equipo de desarrollo o administración del sistema.
+                    </p>
+                </div>
+
+                <div class="text-center mt-5">
+                    <a asp-controller="Home" asp-action="Index" class="btn btn-primary px-4">← Volver al Inicio</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -2,6 +2,7 @@
 using CineGestionPro.Consumer;
 using CineGestionPro.Modelos;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 public class CategoriasController : Controller
@@ -25,9 +26,22 @@ public class CategoriasController : Controller
         return View(categoria);
     }
 
+
+    private List<SelectListItem> GetListaCategorias()
+    {
+        var categorias = CRUD<Categoria>.GetAll();
+        return categorias.Select(c => new SelectListItem
+        {
+            Value = c.nombre_categoria, // O c.id_categoria dependiendo de tu modelo
+            Text = c.nombre_categoria
+        }).ToList();
+    }
+
+
     // GET: CATEGORIAS/Create
     public ActionResult Create()
     {
+        ViewBag.ListaCategorias = GetListaCategorias();
         return View();
     }
 
@@ -53,6 +67,7 @@ public class CategoriasController : Controller
     // GET: CATEGORIAS/Edit/5
     public ActionResult Edit(int id)
     {
+        ViewBag.ListaCategorias = GetListaCategorias();
         var categoria = CRUD<Categoria>.GetById(id);
         if (categoria == null)
         {

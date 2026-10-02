@@ -1,6 +1,7 @@
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using CineGestionPro.Modelos;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 
 [Route("api/[controller]")]
 [ApiController]
@@ -36,6 +37,7 @@ public class RolesController : ControllerBase
 
         return rol;
     }
+
 
     // PUT: api/Rol/5
     // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754

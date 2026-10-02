@@ -1,6 +1,7 @@
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using CineGestionPro.Modelos;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 
 [Route("api/[controller]")]
 [ApiController]
@@ -40,6 +41,7 @@ public class DetalleAlquileresController : ControllerBase
 
         return detallealquiler;
     }
+
 
     // PUT: api/DetalleAlquiler/5
     // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754

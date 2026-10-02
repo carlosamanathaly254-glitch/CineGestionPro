@@ -1,22 +1,97 @@
-html {
-  font-size: 14px;
-}
-
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
-}
-
-html {
-  position: relative;
-  min-height: 100%;
-}
-
+/* Fondo general con un degradado suave y moderno */
 body {
-  margin-bottom: 60px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background-attachment: fixed;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-height: 100vh;
+    color: #333;
 }
+
+/* Tarjeta contenedora flotante con efecto de brillo */
+.card-custom {
+    border: none;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 35px;
+    margin-top: 40px;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Inputs y selects con bordes coloridos al enfocar */
+.form-control, .form-select {
+    border-radius: 10px;
+    border: 2px solid #e2e8f0;
+    padding: 12px 15px;
+    transition: all 0.3s ease;
+    background-color: #f8fafc;
+}
+
+    .form-control:focus, .form-select:focus {
+        border-color: #ec4899;
+        box-shadow: 0 0 0 0.25rem rgba(236, 72, 153, 0.25);
+        background-color: #ffffff;
+    }
+
+/* Etiquetas destacadas */
+.control-label {
+    font-weight: 700;
+    color: #4f46e5;
+    margin-bottom: 6px;
+}
+
+/* Botón principal con degradado vibrante */
+.btn-primary {
+    background: linear-gradient(135deg, #ec4899 0%, #8b5cf6 100%);
+    border: none;
+    border-radius: 10px;
+    padding: 12px 20px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: white;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(236, 72, 153, 0.35);
+}
+
+    .btn-primary:hover {
+        background: linear-gradient(135deg, #db2777 0%, #7c3aed 100%);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(236, 72, 153, 0.5);
+        color: white;
+    }
+
+/* Títulos y textos decorativos */
+h1, h2 {
+    color: #ffffff;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.text-muted {
+    color: #64748b !important;
+}
+
+/* Enlaces llamativos */
+a {
+    color: #f43f5e;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+    a:hover {
+        color: #e11d48;
+        text-decoration: underline;
+    }

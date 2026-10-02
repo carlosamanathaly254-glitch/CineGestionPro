@@ -1,57 +1,39 @@
 @model IEnumerable<CineGestionPro.Modelos.DetalleAlquiler>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Detalles de Alquiler";
 }
 
-<h1>Index</h1>
+<div class="container mt-5 p-4 bg-white rounded shadow-sm border border-light">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h3 class="text-secondary fw-semibold">Detalles de Alquileres</h3>
+        <a asp-action="Create" class="btn btn-outline-secondary btn-sm px-3">Nuevo Detalle</a>
+    </div>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.precio_unitario)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.fecha_devolucion_real)
-            </th>
-      
-            <th>
-                @Html.DisplayNameFor(model => model.Alquiler)
-            </th>
-     
-            <th>
-                @Html.DisplayNameFor(model => model.Ejemplar)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(model => item.precio_unitario)
-            </td>
-            <td>
-                @Html.DisplayFor(model => item.fecha_devolucion_real)
-            </td>
-      
-            <td>
-                @Html.DisplayFor(model => item.Alquiler)
-            </td>
-
-            <td>
-                @Html.DisplayFor(model => item.Ejemplar)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.id_detalle">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.id_detalle">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.id_detalle">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+    <div class="table-responsive">
+        <table class="table table-hover align-middle">
+            <thead style="background-color: #f1f5f9; color: #334155;">
+                <tr>
+                    <th class="py-3">Ejemplar (Código)</th>
+                    <th class="py-3">Precio Unitario</th>
+                    <th class="py-3">Devolución Real</th>
+                    <th class="py-3 text-end">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model) {
+                    <tr>
+                        <td><code>@(item.Ejemplar?.codigo_identificacion ?? "N/A")</code></td>
+                        <td>$@item.precio_unitario</td>
+                        <td>@item.fecha_devolucion_real.ToString("dd/MM/yyyy")</td>
+                        <td class="text-end">
+                            <a asp-action="Edit" asp-route-id="@item.id_detalle" class="btn btn-sm btn-outline-primary px-2 py-1">Editar</a>
+                            <a asp-action="Details" asp-route-id="@item.id_detalle" class="btn btn-sm btn-outline-info px-2 py-1">Detalles</a>
+                            <a asp-action="Delete" asp-route-id="@item.id_detalle" class="btn btn-sm btn-outline-danger px-2 py-1">Eliminar</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -2,6 +2,7 @@
 using CineGestionPro.Consumer;
 using CineGestionPro.Modelos;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 public class UsuariosController : Controller
@@ -24,9 +25,24 @@ public class UsuariosController : Controller
         return View(usuario);
     }
 
+
+    //Metodo para roles
+    private List<SelectListItem> GetRoles()
+    {
+        var roles = CRUD<Rol>.GetAll();
+        return roles.Select(r => new SelectListItem
+        {
+            Value = r.id_rol.ToString(),
+            Text = r.nombre_rol
+        }).ToList();
+    }
+
+
     // GET: USUARIOS/Create
     public ActionResult Create()
     {
+        ViewBag.Roles = GetRoles();
+        ViewBag.id_rol = new SelectList(CRUD<Rol>.GetAll(), "id_rol", "nombre_rol");
         return View();
     }
 
@@ -52,6 +68,7 @@ public class UsuariosController : Controller
     // GET: USUARIOS/Edit/5
     public ActionResult Edit(int id)
     {
+        ViewBag.Roles = GetRoles();
         var usuario = CRUD<Usuario>.GetById(id);
         if (usuario == null)
         {

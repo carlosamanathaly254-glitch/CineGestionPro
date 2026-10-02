@@ -2,6 +2,7 @@
 using CineGestionPro.Consumer;
 using CineGestionPro.Modelos;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 public class EjemplaresController : Controller
@@ -17,6 +18,7 @@ public class EjemplaresController : Controller
     // GET: EJEMPLARS/Details/5
     public ActionResult Details(int id)
     {
+
         var ejemplar = CRUD<Ejemplar>.GetById(id);
         if (id == null)
         {
@@ -25,9 +27,22 @@ public class EjemplaresController : Controller
         return View(ejemplar);
     }
 
+    //Metodo para contenidos
+    private List<SelectListItem> GetContenidos()
+    {
+        var contenidos = CRUD<Contenido>.GetAll();
+        return contenidos.Select(co => new SelectListItem
+        {
+            Value = co.id_contenido.ToString(),
+            Text = co.titulo
+        }).ToList();
+    }
+
     // GET: EJEMPLARS/Create
     public ActionResult Create()
     {
+        ViewBag.id_contenido = new SelectList(CRUD<Contenido>.GetAll(), "id_contenido", "titulo");
+        ViewBag.Contenidos = GetContenidos();
         return View();
     }
 
@@ -53,6 +68,7 @@ public class EjemplaresController : Controller
     // GET: EJEMPLARS/Edit/5
     public ActionResult Edit(int id)
     {
+        ViewBag.Contenidos = GetContenidos();
         var ejemplar = CRUD<Ejemplar>.GetById(id);
         if (ejemplar == null)
         {

@@ -1,79 +1,43 @@
 @model IEnumerable<CineGestionPro.Modelos.Usuario>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Usuarios";
 }
 
-<h1>Index</h1>
+<div class="container mt-5 p-4 bg-white rounded shadow-sm border border-light">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h3 class="text-secondary fw-semibold">Gestión de Usuarios</h3>
+        <a asp-action="Create" class="btn btn-outline-secondary btn-sm px-3">Nuevo Usuario</a>
+    </div>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.nombre)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.apellido)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.correo_electronico)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.telefono)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.contrasena)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.fecha_registro)
-            </th>
-     
-            <th>
-                @Html.DisplayNameFor(model => model.Rol)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Alquileres)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(model => item.nombre)
-            </td>
-            <td>
-                @Html.DisplayFor(model => item.apellido)
-            </td>
-            <td>
-                @Html.DisplayFor(model => item.correo_electronico)
-            </td>
-            <td>
-                @Html.DisplayFor(model => item.telefono)
-            </td>
-            <td>
-                @Html.DisplayFor(model => item.contrasena)
-            </td>
-            <td>
-                @Html.DisplayFor(model => item.fecha_registro)
-            </td>
-     
-            <td>
-                @Html.DisplayFor(model => item.Rol)
-            </td>
-            <td>
-                @Html.DisplayFor(model => item.Alquileres)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.id_usuario">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.id_usuario">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.id_usuario">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+    <div class="table-responsive">
+        <table class="table table-hover align-middle">
+            <thead style="background-color: #f1f5f9; color: #334155;">
+                <tr>
+                    <th class="py-3">Nombre</th>
+                    <th class="py-3">Apellido</th>
+                    <th class="py-3">Correo</th>
+                    <th class="py-3">Teléfono</th>
+                    <th class="py-3">Rol</th>
+                    <th class="py-3 text-end">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model) {
+                    <tr>
+                        <td class="fw-medium">@item.nombre</td>
+                        <td>@item.apellido</td>
+                        <td class="text-muted">@item.correo_electronico</td>
+                        <td>@item.telefono</td>
+                        <td><span class="badge bg-light text-secondary border">@(item.Rol?.nombre_rol ?? "Sin Rol")</span></td>
+                        <td class="text-end">
+                            <a asp-action="Edit" asp-route-id="@item.id_usuario" class="btn btn-sm btn-outline-primary px-2 py-1">Editar</a>
+                            <a asp-action="Details" asp-route-id="@item.id_usuario" class="btn btn-sm btn-outline-info px-2 py-1">Detalles</a>
+                            <a asp-action="Delete" asp-route-id="@item.id_usuario" class="btn btn-sm btn-outline-danger px-2 py-1">Eliminar</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -27,6 +27,11 @@ namespace CineGestionPro.Modelos
         [Required]
         public decimal costo_total { get; set; }
 
+        [ForeignKey("Usuario")]
+        [Column("id_usuario")]
+        public int? id_usuario { get; set; }
+        public Usuario? Usuario { get; set; }
+
         //Relaciones
         public List<DetalleAlquiler>? DetalleAlquileres { get; set; }
     }

@@ -9,7 +9,9 @@ namespace CineGestionPro.API
             var builder = WebApplication.CreateBuilder(args);
             var connectionString = builder.Configuration.GetConnectionString("Postgres") ?? 
                 throw new InvalidOperationException("Connection string 'Postgres' not found.");
-
+           
+            
+            AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
             builder.Services.AddDbContext<CineGestionProAPIContext>(options => options.UseNpgsql(connectionString));
             builder.Services.AddControllers().AddNewtonsoftJson(options =>
             {

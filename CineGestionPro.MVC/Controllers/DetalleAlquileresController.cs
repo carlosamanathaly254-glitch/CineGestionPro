@@ -2,6 +2,7 @@
 using CineGestionPro.Consumer;
 using CineGestionPro.Modelos;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 public class DetalleAlquileresController : Controller
@@ -25,9 +26,35 @@ public class DetalleAlquileresController : Controller
         return View(detallealquiler);
     }
 
+    //Metodos para alquiler y ejemplar
+    private List<SelectListItem> GetAlquileres()
+    {
+        var alquileres = CRUD<Alquiler>.GetAll();
+        return alquileres.Select(a => new SelectListItem
+        {
+            Value = a.id_alquiler.ToString(),
+            Text = $"Alquiler #{a.id_alquiler} - {a.fecha_alquiler:dd/MM/yyyy}"
+        }).ToList();
+    }
+
+    private List<SelectListItem> GetEjemplares()
+    {
+        var ejemplares = CRUD<Ejemplar>.GetAll();
+        return ejemplares.Select(e => new SelectListItem
+        {
+            Value = e.id_ejemplar.ToString(),
+            Text = $"{e.codigo_identificacion} ({e.formato})"
+        }).ToList();
+    }
     // GET: DETALLEALQUILERS/Create
+    // GET: DetalleAlquilers/Create
     public ActionResult Create()
     {
+        ViewBag.id_alquiler = new SelectList(CRUD<Alquiler>.GetAll(), "id_alquiler", "id_alquiler");
+
+   
+        ViewBag.id_ejemplar = new SelectList(CRUD<Ejemplar>.GetAll(), "id_ejemplar", "codigo_identificacion");
+
         return View();
     }
 
@@ -53,6 +80,8 @@ public class DetalleAlquileresController : Controller
     // GET: DETALLEALQUILERS/Edit/5
     public ActionResult Edit(int id)
     {
+        ViewBag.Alquileres = GetAlquileres();
+        ViewBag.Ejemplares = GetEjemplares();
         var detallealquiler = CRUD<DetalleAlquiler>.GetById(id);
         if (detallealquiler == null)
         {

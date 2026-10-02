@@ -1,66 +1,60 @@
 @model CineGestionPro.Modelos.Contenido
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Crear Contenido";
 }
 
-<h1>Create</h1>
+<h2 class="mb-4">Crear Nuevo Contenido</h2>
 
-<h4>Contenido</h4>
-<hr />
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-6">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-            <div class="form-group">
-                <label asp-for="titulo" class="control-label"></label>
-                <input asp-for="titulo" class="form-control" />
+
+            <div class="form-group mb-3">
+                <label asp-for="titulo" class="control-label fw-bold">Título</label>
+                <input asp-for="titulo" class="form-control" placeholder="Ej: Avengers, Interestelar..." />
                 <span asp-validation-for="titulo" class="text-danger"></span>
             </div>
 
-            <div class="form-group">
-                <label asp-for="tipo" class="control-label"></label>
-                <input asp-for="tipo" class="form-control" />
+            <div class="form-group mb-3">
+                <label asp-for="tipo" class="control-label fw-bold">Tipo</label>
+                <select asp-for="tipo" class="form-control" asp-items="ViewBag.ListaTipos">
+                    <option value="">-- Seleccione un tipo existente --</option>
+                </select>
                 <span asp-validation-for="tipo" class="text-danger"></span>
             </div>
 
-            <div class="form-group">
-                <label asp-for="sinopsis" class="control-label"></label>
-                <input asp-for="sinopsis" class="form-control" />
+
+            <div class="form-group mb-3">
+                <label asp-for="sinopsis" class="control-label fw-bold">Sinopsis</label>
+                <textarea asp-for="sinopsis" class="form-control" rows="3" placeholder="Breve resumen de la historia..."></textarea>
                 <span asp-validation-for="sinopsis" class="text-danger"></span>
             </div>
 
-            <div class="form-group">
-                <label asp-for="anio_lanzamiento" class="control-label"></label>
-                <input asp-for="anio_lanzamiento" class="form-control" />
+            <div class="form-group mb-3">
+                <label asp-for="anio_lanzamiento" class="control-label fw-bold">Año de Lanzamiento</label>
+                <input asp-for="anio_lanzamiento" class="form-control" type="number" placeholder="Ej: 2024" />
                 <span asp-validation-for="anio_lanzamiento" class="text-danger"></span>
             </div>
 
-            <div class="form-group">
-                <label asp-for="id_categoria" class="control-label"></label>
-                <input asp-for="id_categoria" class="form-control" />
+            <div class="form-group mb-3">
+                <label asp-for="id_categoria" class="control-label fw-bold">Categoría</label>
+                <select asp-for="id_categoria" class="form-control" asp-items="ViewBag.id_categoria">
+                    <option value="">-- Seleccione una categoría --</option>
+                </select>
                 <span asp-validation-for="id_categoria" class="text-danger"></span>
             </div>
 
-            <div class="form-group">
-                <label asp-for="Categoria" class="control-label"></label>
-                <input asp-for="Categoria" class="form-control" />
-                <span asp-validation-for="Categoria" class="text-danger"></span>
-            </div>
-
-            <div class="form-group">
-                <label asp-for="Ejemplares" class="control-label"></label>
-                <input asp-for="Ejemplares" class="form-control" />
-                <span asp-validation-for="Ejemplares" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+            <div class="form-group mt-4">
+                <input type="submit" value="Crear Contenido" class="btn btn-primary px-4" />
+                <a asp-action="Index" class="btn btn-secondary ms-2">Volver a la lista</a>
             </div>
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

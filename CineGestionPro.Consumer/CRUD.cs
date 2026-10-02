@@ -48,6 +48,12 @@ namespace CineGestionPro.Consumer
 
         public static T Create(T item)
         {
+            var prop = typeof(T).GetProperty("id_alquiler");
+            if (prop != null && prop.CanWrite)
+            {
+                prop.SetValue(item, 0);
+            }
+
             using (var cliente = new HttpClient())
             {
                 var response = cliente.PostAsync(Endpoint,

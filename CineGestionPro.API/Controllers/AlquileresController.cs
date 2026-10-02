@@ -1,6 +1,7 @@
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using CineGestionPro.Modelos;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 
 [Route("api/[controller]")]
 [ApiController]
@@ -43,6 +44,9 @@ public class AlquileresController : ControllerBase
         return alquiler;
     }
 
+    
+
+
     // PUT: api/Alquiler/5
     // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
     [HttpPut("{id_alquiler}")]
@@ -79,6 +83,15 @@ public class AlquileresController : ControllerBase
     [HttpPost]
     public async Task<ActionResult<Alquiler>> PostAlquiler(Alquiler alquiler)
     {
+        // 1. Forzar que el ID sea 0 para que la base de datos (SERIAL) genere el siguiente número automáticamente
+        alquiler.id_alquiler = 0;
+
+        // 2. Asegurar el formato UTC en las fechas para evitar problemas con PostgreSQL
+        if (alquiler.fecha_alquiler != default)
+        {
+            alquiler.fecha_alquiler = DateTime.SpecifyKind(alquiler.fecha_alquiler, DateTimeKind.Utc);
+        }
+
         _context.Alquileres.Add(alquiler);
         await _context.SaveChangesAsync();
 

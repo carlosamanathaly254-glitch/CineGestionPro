@@ -1,6 +1,7 @@
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using CineGestionPro.Modelos;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 
 [Route("api/[controller]")]
 [ApiController]
@@ -21,6 +22,7 @@ public class CategoriasController : ControllerBase
             .ThenInclude(co => co.Ejemplares)
         .ToListAsync();
     }
+ 
 
     // GET: api/Categoria/5
     [HttpGet("{id_categoria}")]

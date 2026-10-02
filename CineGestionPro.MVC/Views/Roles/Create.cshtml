@@ -5,7 +5,6 @@
 }
 
 <h1>Create</h1>
-
 <h4>Rol</h4>
 <hr />
 <div class="row">
@@ -13,24 +12,31 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
+         
             <div class="form-group">
                 <label asp-for="nombre_rol" class="control-label"></label>
-                <input asp-for="nombre_rol" class="form-control" />
+                <select asp-for="nombre_rol" class="form-control">
+                    <option value="">-- Seleccione un rol --</option>
+                    <option value="Administrador">Administrador</option>
+                    <option value="Empleado">Empleado</option>
+                    <option value="Cliente">Cliente</option>
+                    <option value="Supervisor">Supervisor</option>
+                    <option value="Soporte">Soporte</option>
+                </select>
                 <span asp-validation-for="nombre_rol" class="text-danger"></span>
             </div>
 
-            <div class="form-group">
-                <label asp-for="Usuarios" class="control-label"></label>
-                <input asp-for="Usuarios" class="form-control" />
-                <span asp-validation-for="Usuarios" class="text-danger"></span>
-            </div>
-            <div class="form-group">
+            <div class="form-group mt-3">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
-<div>
+<div class="mt-3">
     <a asp-action="Index">Back to List</a>
 </div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
