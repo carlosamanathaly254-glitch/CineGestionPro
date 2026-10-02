@@ -1,0 +1,60 @@
+@model CineGestionPro.Modelos.Ejemplar
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Ejemplar</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="codigo_identificacion" class="control-label"></label>
+                <input asp-for="codigo_identificacion" class="form-control" />
+                <span asp-validation-for="codigo_identificacion" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="formato" class="control-label"></label>
+                <input asp-for="formato" class="form-control" />
+                <span asp-validation-for="formato" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="estado_disponibilidad" class="control-label"></label>
+                <input asp-for="estado_disponibilidad" class="form-control" />
+                <span asp-validation-for="estado_disponibilidad" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="id_contenido" class="control-label"></label>
+                <input asp-for="id_contenido" class="form-control" />
+                <span asp-validation-for="id_contenido" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Contenido" class="control-label"></label>
+                <input asp-for="Contenido" class="form-control" />
+                <span asp-validation-for="Contenido" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="DetallesAlquiler" class="control-label"></label>
+                <input asp-for="DetallesAlquiler" class="form-control" />
+                <span asp-validation-for="DetallesAlquiler" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

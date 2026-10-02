@@ -1,0 +1,47 @@
+@model IEnumerable<CineGestionPro.Modelos.Categoria>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.nombre_categoria)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.descripcion_categoria)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Contenidos)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(model => item.nombre_categoria)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.descripcion_categoria)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.Contenidos)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.id_categoria">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.id_categoria">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.id_categoria">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

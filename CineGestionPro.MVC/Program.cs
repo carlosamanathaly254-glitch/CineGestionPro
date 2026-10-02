@@ -1,4 +1,6 @@
 using Microsoft.EntityFrameworkCore;
+using CineGestionPro.Modelos;
+using CineGestionPro.Consumer;
 namespace CineGestionPro.MVC
 {
     public class Program
@@ -9,6 +11,14 @@ namespace CineGestionPro.MVC
             var connectionString = builder.Configuration.GetConnectionString("CineGestionProAPIContext") ?? throw new InvalidOperationException("Connection string 'CineGestionProAPIContext' not found.");
 
             builder.Services.AddDbContext<CineGestionProAPIContext>(options => options.UseNpgsql(connectionString));
+
+           CRUD<Alquiler>.Endpoint = "https://localhost:7225/api/Alquileres";
+            CRUD<Categoria>.Endpoint = "https://localhost:7225/api/Categorias";
+            CRUD<Contenido>.Endpoint = "https://localhost:7225/api/Contenidos";
+            CRUD<DetalleAlquiler>.Endpoint = "https://localhost:7225/api/DetalleAlquileres";
+            CRUD<Ejemplar>.Endpoint = "https://localhost:7225/api/Ejemplares";
+            CRUD<Rol>.Endpoint = "https://localhost:7225/api/Roles";
+            CRUD<Usuario>.Endpoint = "https://localhost:7225/api/Usuarios";
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
