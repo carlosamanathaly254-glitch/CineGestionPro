@@ -14,10 +14,10 @@ public class AlquileresController : Controller
     }
 
     // GET: ALQUILERS/Details/5
-    public ActionResult Details(int id_alquiler)
+    public ActionResult Details(int id)
     {
-        var alquiler = CRUD<Alquiler>.GetById(id_alquiler);
-        if(id_alquiler== null)
+        var alquiler = CRUD<Alquiler>.GetById(id);
+        if(id== null)
         {
             return NotFound();
         }
@@ -50,9 +50,9 @@ public class AlquileresController : Controller
     }
 
     // GET: ALQUILERS/Edit/5
-    public ActionResult Edit(int id_alquiler)
+    public ActionResult Edit(int id)
     {
-        var alquiler = CRUD<Alquiler>.GetById(id_alquiler);
+        var alquiler = CRUD<Alquiler>.GetById(id);
         if (alquiler == null)
         {
             return NotFound();
@@ -65,11 +65,11 @@ public class AlquileresController : Controller
     // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public ActionResult Edit(int id_alquiler, Alquiler alquiler)
+    public ActionResult Edit(int id, Alquiler alquiler)
     {
         try
         {
-            CRUD<Alquiler>.Update(id_alquiler, alquiler);
+            CRUD<Alquiler>.Update(id, alquiler);
             return RedirectToAction(nameof(Index));
 
         }
@@ -82,9 +82,9 @@ public class AlquileresController : Controller
     }
 
     // GET: ALQUILERS/Delete/5
-    public ActionResult Delete(int id_alquiler)
+    public ActionResult Delete(int id)
     {
-        var alquiler = CRUD<Alquiler>.GetById(id_alquiler);
+        var alquiler = CRUD<Alquiler>.GetById(id);
         if (alquiler == null)
         {
             return NotFound();
@@ -96,11 +96,11 @@ public class AlquileresController : Controller
     // POST: ALQUILERS/Delete/5
     [HttpPost, ActionName("Delete")]
     [ValidateAntiForgeryToken]
-    public ActionResult DeleteConfirmed(int id_alquiler, Alquiler alquiler)
+    public ActionResult DeleteConfirmed(int id, Alquiler alquiler)
     {
         try
         {
-            CRUD<Alquiler>.Delete(id_alquiler);
+            CRUD<Alquiler>.Delete(id);
             return RedirectToAction(nameof(Index));
         }
         catch (Exception ex)

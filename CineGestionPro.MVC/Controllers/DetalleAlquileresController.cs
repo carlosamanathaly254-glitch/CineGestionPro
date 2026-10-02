@@ -15,10 +15,10 @@ public class DetalleAlquileresController : Controller
     }
 
     // GET: DETALLEALQUILERS/Details/5
-    public ActionResult Details(int id_detalle)
+    public ActionResult Details(int id)
     {
-        var detallealquiler = CRUD<DetalleAlquiler>.GetById(id_detalle);
-        if (id_detalle == null)
+        var detallealquiler = CRUD<DetalleAlquiler>.GetById(id);
+        if (id == null)
         {
             return NotFound();
         }
@@ -51,9 +51,9 @@ public class DetalleAlquileresController : Controller
     }
 
     // GET: DETALLEALQUILERS/Edit/5
-    public ActionResult Edit(int id_detalle)
+    public ActionResult Edit(int id)
     {
-        var detallealquiler = CRUD<DetalleAlquiler>.GetById(id_detalle);
+        var detallealquiler = CRUD<DetalleAlquiler>.GetById(id);
         if (detallealquiler == null)
         {
             return NotFound();
@@ -66,11 +66,11 @@ public class DetalleAlquileresController : Controller
     // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public ActionResult Edit(int id_detalle, DetalleAlquiler detallealquiler)
+    public ActionResult Edit(int id, DetalleAlquiler detallealquiler)
     {
         try
         {
-            CRUD<DetalleAlquiler>.Update(id_detalle, detallealquiler);
+            CRUD<DetalleAlquiler>.Update(id, detallealquiler);
             return RedirectToAction(nameof(Index));
 
         }
@@ -83,9 +83,9 @@ public class DetalleAlquileresController : Controller
     }
 
     // GET: DETALLEALQUILERS/Delete/5
-    public ActionResult Delete(int id_detalle)
+    public ActionResult Delete(int id)
     {
-        var detallealquiler = CRUD<DetalleAlquiler>.GetById(id_detalle);
+        var detallealquiler = CRUD<DetalleAlquiler>.GetById(id);
         if (detallealquiler == null)
         {
             return NotFound();
@@ -97,11 +97,11 @@ public class DetalleAlquileresController : Controller
     // POST: DETALLEALQUILERS/Delete/5
     [HttpPost, ActionName("Delete")]
     [ValidateAntiForgeryToken]
-    public ActionResult DeleteConfirmed(int id_detalle, DetalleAlquiler detallealquiler)
+    public ActionResult DeleteConfirmed(int id, DetalleAlquiler detallealquiler)
     {
         try
         {
-            CRUD<DetalleAlquiler>.Delete(id_detalle);
+            CRUD<DetalleAlquiler>.Delete(id);
             return RedirectToAction(nameof(Index));
         }
         catch (Exception ex)

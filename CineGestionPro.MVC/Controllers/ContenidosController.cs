@@ -16,10 +16,10 @@ public class ContenidosController : Controller
     }
 
     // GET: CONTENIDOS/Details/5
-    public ActionResult Details(int id_contenido)
+    public ActionResult Details(int id)
     {
-        var contenido = CRUD<Contenido>.GetById(id_contenido);
-        if (id_contenido == null)
+        var contenido = CRUD<Contenido>.GetById(id);
+        if (id == null)
         {
             return NotFound();
         }
@@ -52,9 +52,9 @@ public class ContenidosController : Controller
     }
 
     // GET: CONTENIDOS/Edit/5
-    public ActionResult Edit(int id_contenido)
+    public ActionResult Edit(int id)
     {
-        var contenido = CRUD<Contenido>.GetById(id_contenido);
+        var contenido = CRUD<Contenido>.GetById(id);
         if (contenido == null)
         {
             return NotFound();
@@ -67,11 +67,11 @@ public class ContenidosController : Controller
     // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public ActionResult Edit(int id_contenido, Contenido contenido)
+    public ActionResult Edit(int id, Contenido contenido)
     {
         try
         {
-            CRUD<Contenido>.Update(id_contenido, contenido);
+            CRUD<Contenido>.Update(id, contenido);
             return RedirectToAction(nameof(Index));
 
         }
@@ -84,9 +84,9 @@ public class ContenidosController : Controller
     }
 
     // GET: CONTENIDOS/Delete/5
-    public ActionResult Delete(int id_contenido)
+    public ActionResult Delete(int id)
     {
-        var contenido = CRUD<Contenido>.GetById(id_contenido);
+        var contenido = CRUD<Contenido>.GetById(id);
         if (contenido == null)
         {
             return NotFound();
@@ -98,11 +98,11 @@ public class ContenidosController : Controller
     // POST: CONTENIDOS/Delete/5
     [HttpPost, ActionName("Delete")]
     [ValidateAntiForgeryToken]
-    public ActionResult DeleteConfirmed(int id_contenido, Contenido contenido)
+    public ActionResult DeleteConfirmed(int id, Contenido contenido)
     {
         try
         {
-            CRUD<Contenido>.Delete(id_contenido);
+            CRUD<Contenido>.Delete(id);
             return RedirectToAction(nameof(Index));
         }
         catch (Exception ex)

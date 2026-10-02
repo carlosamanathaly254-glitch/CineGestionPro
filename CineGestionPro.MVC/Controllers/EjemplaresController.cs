@@ -15,10 +15,10 @@ public class EjemplaresController : Controller
     }
 
     // GET: EJEMPLARS/Details/5
-    public ActionResult Details(int id_ejemplar)
+    public ActionResult Details(int id)
     {
-        var ejemplar = CRUD<Ejemplar>.GetById(id_ejemplar);
-        if (id_ejemplar == null)
+        var ejemplar = CRUD<Ejemplar>.GetById(id);
+        if (id == null)
         {
             return NotFound();
         }
@@ -51,9 +51,9 @@ public class EjemplaresController : Controller
     }
 
     // GET: EJEMPLARS/Edit/5
-    public ActionResult Edit(int id_ejemplar)
+    public ActionResult Edit(int id)
     {
-        var ejemplar = CRUD<Ejemplar>.GetById(id_ejemplar);
+        var ejemplar = CRUD<Ejemplar>.GetById(id);
         if (ejemplar == null)
         {
             return NotFound();
@@ -66,11 +66,11 @@ public class EjemplaresController : Controller
     // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public ActionResult Edit(int id_ejemplar, Ejemplar ejemplar)
+    public ActionResult Edit(int id, Ejemplar ejemplar)
     {
         try
         {
-            CRUD<Ejemplar>.Update(id_ejemplar, ejemplar);
+            CRUD<Ejemplar>.Update(id, ejemplar);
             return RedirectToAction(nameof(Index));
 
         }
@@ -83,9 +83,9 @@ public class EjemplaresController : Controller
     }
 
     // GET: EJEMPLARS/Delete/5
-    public ActionResult Delete(int id_ejemplar)
+    public ActionResult Delete(int id)
     {
-        var ejemplar = CRUD<Ejemplar>.GetById(id_ejemplar);
+        var ejemplar = CRUD<Ejemplar>.GetById(id);
         if (ejemplar == null)
         {
             return NotFound();
@@ -97,11 +97,11 @@ public class EjemplaresController : Controller
     // POST: EJEMPLARS/Delete/5
     [HttpPost, ActionName("Delete")]
     [ValidateAntiForgeryToken]
-    public ActionResult DeleteConfirmed(int id_ejemplar, Ejemplar ejemplar)
+    public ActionResult DeleteConfirmed(int id, Ejemplar ejemplar)
     {
         try
         {
-            CRUD<Ejemplar>.Delete(id_ejemplar);
+            CRUD<Ejemplar>.Delete(id);
             return RedirectToAction(nameof(Index));
         }
         catch (Exception ex)

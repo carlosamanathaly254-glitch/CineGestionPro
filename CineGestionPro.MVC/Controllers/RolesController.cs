@@ -15,10 +15,10 @@ public class RolesController : Controller
     }
 
     // GET: ROLS/Details/5
-    public ActionResult Details(int id_rol)
+    public ActionResult Details(int id)
     {
-        var rol = CRUD<Rol>.GetById(id_rol);
-        if (id_rol == null)
+        var rol = CRUD<Rol>.GetById(id);
+        if (id == null)
         {
             return NotFound();
         }
@@ -51,9 +51,9 @@ public class RolesController : Controller
     }
 
     // GET: ROLS/Edit/5
-    public ActionResult Edit(int id_rol)
+    public ActionResult Edit(int id)
     {
-        var rol = CRUD<Rol>.GetById(id_rol);
+        var rol = CRUD<Rol>.GetById(id);
         if (rol == null)
         {
             return NotFound();
@@ -66,11 +66,11 @@ public class RolesController : Controller
     // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public ActionResult Edit(int id_rol, Rol rol)
+    public ActionResult Edit(int id, Rol rol)
     {
         try
         {
-            CRUD<Rol>.Update(id_rol, rol);
+            CRUD<Rol>.Update(id, rol);
             return RedirectToAction(nameof(Index));
 
         }
@@ -83,9 +83,9 @@ public class RolesController : Controller
     }
 
     // GET: ROLS/Delete/5
-    public ActionResult Delete(int id_rol)
+    public ActionResult Delete(int id)
     {
-        var rol = CRUD<Rol>.GetById(id_rol);
+        var rol = CRUD<Rol>.GetById(id);
         if (rol == null)
         {
             return NotFound();
@@ -97,11 +97,11 @@ public class RolesController : Controller
     // POST: ROLS/Delete/5
     [HttpPost, ActionName("Delete")]
     [ValidateAntiForgeryToken]
-    public ActionResult DeleteConfirmed(int id_rol, Rol rol)
+    public ActionResult DeleteConfirmed(int id, Rol rol)
     {
         try
         {
-            CRUD<Rol>.Delete(id_rol);
+            CRUD<Rol>.Delete(id);
             return RedirectToAction(nameof(Index));
         }
         catch (Exception ex)

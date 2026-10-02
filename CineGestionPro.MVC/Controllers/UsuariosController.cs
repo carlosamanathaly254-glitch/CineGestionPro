@@ -14,10 +14,10 @@ public class UsuariosController : Controller
     }
 
     // GET: USUARIOS/Details/5
-    public ActionResult Details(int id_usuario)
+    public ActionResult Details(int id)
     {
-        var usuario = CRUD<Usuario>.GetById(id_usuario);
-        if (id_usuario == null)
+        var usuario = CRUD<Usuario>.GetById(id);
+        if (id == null)
         {
             return NotFound();
         }
@@ -50,9 +50,9 @@ public class UsuariosController : Controller
     }
 
     // GET: USUARIOS/Edit/5
-    public ActionResult Edit(int id_usuario)
+    public ActionResult Edit(int id)
     {
-        var usuario = CRUD<Usuario>.GetById(id_usuario);
+        var usuario = CRUD<Usuario>.GetById(id);
         if (usuario == null)
         {
             return NotFound();
@@ -65,11 +65,11 @@ public class UsuariosController : Controller
     // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public ActionResult Edit(int id_usuario, Usuario usuario)
+    public ActionResult Edit(int id, Usuario usuario)
     {
         try
         {
-            CRUD<Usuario>.Update(id_usuario, usuario);
+            CRUD<Usuario>.Update(id, usuario);
             return RedirectToAction(nameof(Index));
 
         }
@@ -82,9 +82,9 @@ public class UsuariosController : Controller
     }
 
     // GET: USUARIOS/Delete/5
-    public ActionResult Delete(int id_usuario)
+    public ActionResult Delete(int id)
     {
-        var usuario = CRUD<Usuario>.GetById(id_usuario);
+        var usuario = CRUD<Usuario>.GetById(id);
         if (usuario == null)
         {
             return NotFound();
@@ -96,11 +96,11 @@ public class UsuariosController : Controller
     // POST: USUARIOS/Delete/5
     [HttpPost, ActionName("Delete")]
     [ValidateAntiForgeryToken]
-    public ActionResult DeleteConfirmed(int id_usuario, Usuario usuario)
+    public ActionResult DeleteConfirmed(int id, Usuario usuario)
     {
         try
         {
-            CRUD<Usuario>.Delete(id_usuario);
+            CRUD<Usuario>.Delete(id);
             return RedirectToAction(nameof(Index));
         }
         catch (Exception ex)

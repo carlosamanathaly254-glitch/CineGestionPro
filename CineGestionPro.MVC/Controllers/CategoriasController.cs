@@ -15,10 +15,10 @@ public class CategoriasController : Controller
     }
 
     // GET: CATEGORIAS/Details/5
-    public ActionResult Details(int id_categoria)
+    public ActionResult Details(int id)
     {
-        var categoria = CRUD<Categoria>.GetById(id_categoria);
-        if (id_categoria == null)
+        var categoria = CRUD<Categoria>.GetById(id);
+        if (id == null)
         {
             return NotFound();
         }
@@ -51,9 +51,9 @@ public class CategoriasController : Controller
     }
 
     // GET: CATEGORIAS/Edit/5
-    public ActionResult Edit(int id_categoria)
+    public ActionResult Edit(int id)
     {
-        var categoria = CRUD<Categoria>.GetById(id_categoria);
+        var categoria = CRUD<Categoria>.GetById(id);
         if (categoria == null)
         {
             return NotFound();
@@ -66,11 +66,11 @@ public class CategoriasController : Controller
     // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public ActionResult Edit(int id_categoria, Categoria categoria)
+    public ActionResult Edit(int id, Categoria categoria)
     {
         try
         {
-            CRUD<Categoria>.Update(id_categoria, categoria);
+            CRUD<Categoria>.Update(id, categoria);
             return RedirectToAction(nameof(Index));
 
         }
@@ -83,9 +83,9 @@ public class CategoriasController : Controller
     }
 
     // GET: CATEGORIAS/Delete/5
-    public ActionResult Delete(int id_categoria)
+    public ActionResult Delete(int id)
     {
-        var categoria = CRUD<Categoria>.GetById(id_categoria);
+        var categoria = CRUD<Categoria>.GetById(id);
         if (categoria == null)
         {
             return NotFound();
@@ -97,11 +97,11 @@ public class CategoriasController : Controller
     // POST: CATEGORIAS/Delete/5
     [HttpPost, ActionName("Delete")]
     [ValidateAntiForgeryToken]
-    public ActionResult DeleteConfirmed(int id_categoria, Categoria categoria)
+    public ActionResult DeleteConfirmed(int id, Categoria categoria)
     {
         try
         {
-            CRUD<Categoria>.Delete(id_categoria);
+            CRUD<Categoria>.Delete(id);
             return RedirectToAction(nameof(Index));
         }
         catch (Exception ex)
