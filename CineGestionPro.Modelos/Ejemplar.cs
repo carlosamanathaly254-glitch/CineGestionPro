@@ -28,7 +28,7 @@ namespace CineGestionPro.Modelos
         [Column("estado_disponibilidad")]
         [MaxLength(20)]
         [Required]
-        public string estado_disponibilidad { get; set; }
+        public string estado_disponibilidad { get; set; } = "DISPONIBLE";
 
         [ForeignKey("Contenido")]
         [Column("id_contenido")]

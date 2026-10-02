@@ -1,3 +1,4 @@
 <Solution>
+  <Project Path="CineGestionPro.API/CineGestionPro.API.csproj" Id="ae22a70c-d570-4749-8f51-afe2b6dcf371" />
   <Project Path="CineGestionPro.Modelos/CineGestionPro.Modelos.csproj" />
 </Solution>
