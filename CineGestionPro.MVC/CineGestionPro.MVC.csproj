@@ -20,8 +20,4 @@
     <ProjectReference Include="..\CineGestionPro.Modelos\CineGestionPro.Modelos.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Temp\" />
-  </ItemGroup>
-
 </Project>
